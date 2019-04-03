@@ -1,0 +1,32 @@
+{
+  "variables": {
+    "region": "us-east-1",
+    "source_ami": "ami-d5bf2caa",
+    "instance_type": "t2.micro",
+    "ami_name": "centos7-nginx"
+  },
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "ami_name": "{{user `ami_name`}}",
+      "region": "{{user `region`}}",
+      "source_ami": "{{user `source_ami`}}",
+      "instance_type": "{{user `instance_type`}}",
+      "communicator": "ssh",
+      "ssh_username": "centos",
+      "run_tags": {
+        "Name": "packer-image"
+      }
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": "sudo yum install -y epel-release"
+    },
+    {
+      "type": "shell",
+      "inline": ["sudo yum install -y nginx","sudo systemctl enable nginx", "sudo systemctl start nginx"]
+    }
+  ]
+}

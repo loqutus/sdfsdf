@@ -1,0 +1,4 @@
+FROM hashicorp/packer:light
+COPY packer-centos-nginx.json /
+COPY packer-entrypoint.sh /
+ENTRYPOINT ["/packer-entrypoint.sh"]
