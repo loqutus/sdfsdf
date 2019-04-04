@@ -1,0 +1,4 @@
+FROM hashicorp/terraform:light
+VOLUME ["/app"]
+WORKDIR /app
+ENTRYPOINT ["/app/terraform-entrypoint.sh"]

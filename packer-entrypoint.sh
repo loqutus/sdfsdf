@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-packer build -force /packer-centos-nginx.json
+packer build -force packer-centos-nginx.json
