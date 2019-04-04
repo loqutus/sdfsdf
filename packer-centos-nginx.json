@@ -16,17 +16,19 @@
       "ssh_username": "centos",
       "run_tags": {
         "Name": "packer-image"
-      }
+      },
+      "ssh_pty": "false",
+      "user_data_file": "disable_tty.sh"
     }
   ],
   "provisioners": [
     {
-      "type": "shell",
-      "inline": "sudo yum install -y epel-release"
-    },
-    {
-      "type": "shell",
-      "inline": ["sudo yum install -y nginx","sudo systemctl enable nginx", "sudo systemctl start nginx"]
+      "type": "ansible",
+      "playbook_file": "./deploy-nginx.yml",
+      "user": "centos",
+      "extra_arguments": ["--ssh-extra-args", "scp_if_ssh=True"],
+      "sftp_command": "/usr/libexec/openssh/sftp-server -e",
+      "ansible_env_vars": [ "ANSIBLE_HOST_KEY_CHECKING=False", "ANSIBLE_SSH_ARGS='-o ForwardAgent=yes -o ControlMaster=auto -o ControlPersist=60s'"]
     }
   ]
 }
