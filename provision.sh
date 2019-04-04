@@ -11,4 +11,4 @@ if [ "$AWS_SECRET_ACCESS_KEY" = "" ]; then
 fi
 
 docker build -f Dockerfile-packer . -t centos7-nginx-aws
-docker run -e "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID" -e "AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY" centos7-nginx-aws
+docker run -e "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID" -e "AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY" -e HOST_HOSTNAME=`hostname` centos7-nginx-aws

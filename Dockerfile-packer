@@ -3,5 +3,6 @@ COPY packer-centos-nginx.json /
 COPY packer-entrypoint.sh /
 COPY deploy-nginx.yml /
 COPY disable_tty.sh /
+COPY index.html.j2 /
 RUN apk add ansible --no-cache --update
 ENTRYPOINT ["/packer-entrypoint.sh"]

@@ -15,3 +15,9 @@
         name: nginx
         state: started
         enabled: yes
+    - name: get host hostname
+      set_fact: host_hostname="{{ lookup('env','HOST_HOSTNAME') }}"
+    - name: copy index.html template
+      template:
+        src: index.html.j2
+        dest: /usr/share/nginx/html/index.html
