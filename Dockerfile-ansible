@@ -1,0 +1,5 @@
+FROM alpine
+RUN apk add ansible
+VOLUME ["/app"]
+WORKDIR /app
+ENTRYPOINT ["/app/ansible-entrypoint.sh"]

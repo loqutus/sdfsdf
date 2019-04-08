@@ -1,6 +1,12 @@
 variable "ip" {}
+
 provider "aws"{
   region = "us-east-1"
+}
+
+resource "aws_key_pair" "interview_task_key" {
+  key_name   = "interview_task_key"
+  public_key = "${file("ssh_key.pub")}"
 }
 
 data "aws_ami" "centos-nginx"{
@@ -16,7 +22,10 @@ resource "aws_instance" "centos-nginx" {
   ami = "${data.aws_ami.centos-nginx.id}"
   instance_type = "t2.micro"
   security_groups = ["allow_http"]
-  key_name = "aws"
+  key_name = "interview_task_key"
+  tags {
+    Name = "centos-nginx"
+  }
 }
 
 resource "aws_security_group" "allow_http"{
