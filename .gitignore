@@ -4,3 +4,4 @@
 ssh_key*
 output.txt
 *.retry
+.terraform/
