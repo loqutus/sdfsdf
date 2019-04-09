@@ -1,1 +1,1 @@
-Hello, I was provisioned on {{ host_hostname }} at {{ ansible_date_time.date }} {{ ansible_date_time.time }}
+Hello, I was provisioned on {{ lookup('env', 'HOST_HOSTNAME') }} at {{ ansible_date_time.date }} {{ ansible_date_time.time }}

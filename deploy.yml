@@ -1,9 +1,0 @@
-- hosts: all
-  tasks:
-    - name: set local hostname
-      set_fact: host_hostname="{{ lookup('env','HOST_HOSTNAME') }}"
-    - name: change index.html
-      template:
-        src: index.html.j2
-        dest: /usr/share/nginx/html/index.html
-      become: yes

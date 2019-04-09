@@ -1,9 +1,5 @@
 FROM hashicorp/packer:light
 WORKDIR /app
-COPY packer-centos-nginx.json /app/
-COPY packer-entrypoint.sh /app/
-COPY deploy-nginx.yml /app/
-COPY disable_tty.sh /app/
-COPY index.html.j2 /app/
+VOLUME ["/app"]
 RUN apk add ansible --no-cache --update
 ENTRYPOINT ["/app/packer-entrypoint.sh"]
